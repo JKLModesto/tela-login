@@ -1,0 +1,15 @@
+{
+  "name": "tela-login",
+  "version": "1.0.0",
+  "description": "Projeto para praticar.",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.4.2"
+  }
+}
