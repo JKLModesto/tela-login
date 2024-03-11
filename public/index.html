@@ -1,15 +1,48 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login - Modesto</title>
-</head>
-<body>
-    
-
-
-
+    <style>
+      body {
+        background-color: aqua;
+      }
+      #container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        height: 100vh;
+      }
+      #login-interface{
+        width: 200px;
+        height: 200px;
+        background-color: white;
+        padding: 80px;
+        border-radius: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+        <div id="login-interface">
+            <h1>LOGIN</h1>
+            <div id="form">
+              <span id="callbackError"></span>
+              <label for="username">username</label>
+              <input
+                type="text"
+                id="username"
+                placeholder="Digite o nome de usuário"
+              />
+              <br />
+              <label for="password">senha</label>
+              <input type="password" id="password" placeholder="Digite sua senha" />
+            </div>
+            <button id="login">Login</button>
+        </div>
+    </div>
     <script src="dist/index.js"></script>
-</body>
+  </body>
 </html>
