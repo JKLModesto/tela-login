@@ -5,8 +5,6 @@ const dbconfig = require('./DB/dbconfig');
 
 oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
 
-const mypw = 'hr'  // set mypw to the hr schema password
-
 async function run() {
 
     const connection = await oracledb.getConnection (dbconfig);
