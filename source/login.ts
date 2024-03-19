@@ -1,5 +1,5 @@
-const username = document.getElementById('username') as HTMLInputElement;
-const password = document.getElementById('password') as HTMLInputElement;
+const usernameLogin = document.getElementById('username') as HTMLInputElement;
+const passwordLogin = document.getElementById('password') as HTMLInputElement;
 
 function verifyAutentice():void {
     
