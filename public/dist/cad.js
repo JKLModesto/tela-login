@@ -34,32 +34,32 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var usernameCad = document.getElementById('username');
-var fullnameCad = document.getElementById('fullname');
-var emailCad = document.getElementById('email');
-var cpfCad = document.getElementById('cpf');
-var passwordCad = document.getElementById('password');
-var passwordConfirmationCad = document.getElementById('passwordConfirmation');
-var cadBtn = document.getElementById('cadBtn');
-passwordConfirmationCad.addEventListener('focusout', function () {
+var usernameCad = document.getElementById("username");
+var fullnameCad = document.getElementById("fullname");
+var emailCad = document.getElementById("email");
+var cpfCad = document.getElementById("cpf");
+var passwordCad = document.getElementById("password");
+var passwordConfirmationCad = document.getElementById("passwordConfirmation");
+var cadBtn = document.getElementById("cadBtn");
+passwordConfirmationCad.addEventListener("focusout", function () {
     if (passwordCad.value !== passwordConfirmationCad.value) {
-        var spanElement = document.getElementById('passwordCheck');
-        spanElement.textContent = 'As senhas não coincidem!!';
-        spanElement.style.color = 'red';
-        spanElement.style.fontSize = '20px';
+        var spanElement = document.getElementById("passwordCheck");
+        spanElement.textContent = "As senhas não coincidem!!";
+        spanElement.style.color = "red";
+        spanElement.style.fontSize = "20px";
         cadBtn.disabled = true;
     }
     else {
-        var spanElement = document.getElementById('passwordCheck');
-        spanElement.textContent = 'As senhas coincidem!!';
-        spanElement.style.color = 'green';
-        spanElement.style.fontSize = '20px';
+        var spanElement = document.getElementById("passwordCheck");
+        spanElement.textContent = "As senhas coincidem!!";
+        spanElement.style.color = "green";
+        spanElement.style.fontSize = "20px";
         cadBtn.disabled = false;
     }
 });
-cadBtn.addEventListener('submit', function () {
-    var oracledb = require('oracledb');
-    var dbconfig = require('../DB/dbconfig.js');
+cadBtn.addEventListener("click", function () {
+    var oracledb = require("oracledb");
+    var dbconfig = require("../DB/dbconfig.js");
     oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
     function run() {
         return __awaiter(this, void 0, void 0, function () {
@@ -70,9 +70,15 @@ cadBtn.addEventListener('submit', function () {
                     case 1:
                         connection = _a.sent();
                         if (!connection) {
-                            throw new Error('Conexão com o banco de dados não estabelecida');
+                            throw new Error("Conexão com o banco de dados não estabelecida");
                         }
-                        return [4 /*yield*/, connection.execute("INSERT INTO modestosystem (username, fullname, email, cpf, password)\n            VALUES (".concat(usernameCad, ",").concat(fullnameCad, ", ").concat(emailCad, ", ").concat(cpfCad, ", ").concat(passwordCad, ")"))];
+                        return [4 /*yield*/, connection.execute("INSERT INTO modestosystem (username, fullname, email, cpf, password)\n                VALUES (:username, :fullname, :email, :cpf, :password)", {
+                                username: usernameCad.value,
+                                fullname: fullnameCad.value,
+                                email: emailCad.value,
+                                cpf: cpfCad.value,
+                                password: passwordCad.value,
+                            })];
                     case 2:
                         result = _a.sent();
                         console.log(result.rows);
