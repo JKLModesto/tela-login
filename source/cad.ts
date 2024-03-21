@@ -8,7 +8,7 @@ const passwordConfirmationCad = document.getElementById(
 ) as HTMLInputElement;
 const cadBtn = document.getElementById("cadBtn") as HTMLButtonElement;
 
-passwordConfirmationCad.addEventListener("focusout", () => {
+passwordConfirmationCad.addEventListener("change", () => {
   if (passwordCad.value !== passwordConfirmationCad.value) {
     const spanElement = document.getElementById(
       "passwordCheck"

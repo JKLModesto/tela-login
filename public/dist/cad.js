@@ -42,7 +42,7 @@ var cpfCad = document.getElementById("cpf");
 var passwordCad = document.getElementById("password");
 var passwordConfirmationCad = document.getElementById("passwordConfirmation");
 var cadBtn = document.getElementById("cadBtn");
-passwordConfirmationCad.addEventListener("focusout", function () {
+passwordConfirmationCad.addEventListener("change", function () {
     if (passwordCad.value !== passwordConfirmationCad.value) {
         var spanElement = document.getElementById("passwordCheck");
         spanElement.textContent = "As senhas não coincidem!!";
