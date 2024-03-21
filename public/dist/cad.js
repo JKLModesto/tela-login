@@ -34,6 +34,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var _this = this;
 var usernameCad = document.getElementById("username");
 var fullnameCad = document.getElementById("fullname");
 var emailCad = document.getElementById("email");
@@ -57,38 +58,42 @@ passwordConfirmationCad.addEventListener("focusout", function () {
         cadBtn.disabled = false;
     }
 });
-cadBtn.addEventListener("click", function () {
-    var oracledb = require("oracledb");
-    var dbconfig = require("../DB/dbconfig.js");
-    oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
-    function run() {
-        return __awaiter(this, void 0, void 0, function () {
-            var connection, result;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, oracledb.getConnection(dbconfig)];
-                    case 1:
-                        connection = _a.sent();
-                        if (!connection) {
-                            throw new Error("Conexão com o banco de dados não estabelecida");
-                        }
-                        return [4 /*yield*/, connection.execute("INSERT INTO modestosystem (username, fullname, email, cpf, password)\n                VALUES (:username, :fullname, :email, :cpf, :password)", {
-                                username: usernameCad.value,
-                                fullname: fullnameCad.value,
-                                email: emailCad.value,
-                                cpf: cpfCad.value,
-                                password: passwordCad.value,
-                            })];
-                    case 2:
-                        result = _a.sent();
-                        run();
-                        console.log(result.rows);
-                        return [4 /*yield*/, connection.close()];
-                    case 3:
-                        _a.sent();
-                        return [2 /*return*/];
+cadBtn.addEventListener("click", function () { return __awaiter(_this, void 0, void 0, function () {
+    var oracledb, dbconfig, connection, result, error_1;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                oracledb = require("oracledb");
+                dbconfig = require("../DB/dbconfig.js");
+                oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
+                _a.label = 1;
+            case 1:
+                _a.trys.push([1, 5, , 6]);
+                return [4 /*yield*/, oracledb.getConnection(dbconfig)];
+            case 2:
+                connection = _a.sent();
+                if (!connection) {
+                    throw new Error("Conexão com o banco de dados não estabelecida");
                 }
-            });
-        });
-    }
-});
+                return [4 /*yield*/, connection.execute("INSERT INTO modestosystem (username, fullname, email, cpf, password)\n                VALUES (:username, :fullname, :email, :cpf, :password)", {
+                        username: usernameCad.value,
+                        fullname: fullnameCad.value,
+                        email: emailCad.value,
+                        cpf: cpfCad.value,
+                        password: passwordCad.value,
+                    })];
+            case 3:
+                result = _a.sent();
+                console.log(result.rows);
+                return [4 /*yield*/, connection.close()];
+            case 4:
+                _a.sent();
+                return [3 /*break*/, 6];
+            case 5:
+                error_1 = _a.sent();
+                console.error('Erro ao inserir registro:', error_1);
+                return [3 /*break*/, 6];
+            case 6: return [2 /*return*/];
+        }
+    });
+}); });

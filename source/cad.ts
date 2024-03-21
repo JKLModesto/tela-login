@@ -28,13 +28,13 @@ passwordConfirmationCad.addEventListener("focusout", () => {
   }
 });
 
-cadBtn.addEventListener("click", () => {
+cadBtn.addEventListener("click", async () => {
   const oracledb = require("oracledb");
   const dbconfig = require("../DB/dbconfig.js");
 
   oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
 
-  async function run() {
+  try{
     const connection = await oracledb.getConnection(dbconfig);
     if (!connection) {
       throw new Error("Conexão com o banco de dados não estabelecida");
@@ -50,8 +50,9 @@ cadBtn.addEventListener("click", () => {
         password: passwordCad.value,
       }
     );
-    run();
     console.log(result.rows);
     await connection.close();
+  } catch(error){
+    console.error('Erro ao inserir registro:', error)
   }
 });
