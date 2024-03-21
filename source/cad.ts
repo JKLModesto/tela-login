@@ -50,7 +50,7 @@ cadBtn.addEventListener("click", () => {
         password: passwordCad.value,
       }
     );
-
+    run();
     console.log(result.rows);
     await connection.close();
   }

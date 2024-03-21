@@ -81,6 +81,7 @@ cadBtn.addEventListener("click", function () {
                             })];
                     case 2:
                         result = _a.sent();
+                        run();
                         console.log(result.rows);
                         return [4 /*yield*/, connection.close()];
                     case 3:
