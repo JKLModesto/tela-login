@@ -4,6 +4,8 @@ const app = express();
 const PORT = 3000
 
 app.use(bodyParser.json())
+app.use(express.static('public'));
+
 
 app.get('/login', (req, res, next)=>{
     res.sendFile(__dirname+"/login.html")
