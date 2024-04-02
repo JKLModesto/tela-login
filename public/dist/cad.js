@@ -59,41 +59,40 @@ passwordConfirmationCad.addEventListener("change", function () {
     }
 });
 cadBtn.addEventListener("click", function () { return __awaiter(_this, void 0, void 0, function () {
-    var oracledb, dbconfig, connection, result, error_1;
+    var userData, response, error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                oracledb = require("oracledb");
-                dbconfig = require("../DB/dbconfig.js");
-                oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
+                userData = {
+                    username: usernameCad.value,
+                    fullname: fullnameCad.value,
+                    email: emailCad.value,
+                    cpf: cpfCad.value,
+                    password: passwordCad.value,
+                };
                 _a.label = 1;
             case 1:
-                _a.trys.push([1, 5, , 6]);
-                return [4 /*yield*/, oracledb.getConnection(dbconfig)];
-            case 2:
-                connection = _a.sent();
-                if (!connection) {
-                    throw new Error("Conexão com o banco de dados não estabelecida");
-                }
-                return [4 /*yield*/, connection.execute("INSERT INTO modestosystem (username, fullname, email, cpf, password)\n                VALUES (:username, :fullname, :email, :cpf, :password)", {
-                        username: usernameCad.value,
-                        fullname: fullnameCad.value,
-                        email: emailCad.value,
-                        cpf: cpfCad.value,
-                        password: passwordCad.value,
+                _a.trys.push([1, 3, , 4]);
+                return [4 /*yield*/, fetch("/cadastro/infos", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(userData),
                     })];
+            case 2:
+                response = _a.sent();
+                if (!response.ok) {
+                    throw new Error("Erro ao cadastrar usuário");
+                }
+                alert("Usuário cadastrado com sucesso!");
+                return [3 /*break*/, 4];
             case 3:
-                result = _a.sent();
-                console.log(result.rows);
-                return [4 /*yield*/, connection.close()];
-            case 4:
-                _a.sent();
-                return [3 /*break*/, 6];
-            case 5:
                 error_1 = _a.sent();
-                console.error('Erro ao inserir registro:', error_1);
-                return [3 /*break*/, 6];
-            case 6: return [2 /*return*/];
+                console.error("Erro ao cadastrar usuário:", error_1);
+                alert("Erro ao cadastrar usuário. Verifique o console para mais detalhes.");
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
         }
     });
 }); });

@@ -28,31 +28,31 @@ passwordConfirmationCad.addEventListener("change", () => {
   }
 });
 
-cadBtn.addEventListener("click", async () => {
-  const oracledb = require("oracledb");
-  const dbconfig = require("../DB/dbconfig.js");
-
-  oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
-
-  try{
-    const connection = await oracledb.getConnection(dbconfig);
-    if (!connection) {
-      throw new Error("Conexão com o banco de dados não estabelecida");
-    }
-    const result = await connection.execute(
-      `INSERT INTO modestosystem (username, fullname, email, cpf, password)
-                VALUES (:username, :fullname, :email, :cpf, :password)`,
-      {
-        username: usernameCad.value,
-        fullname: fullnameCad.value,
-        email: emailCad.value,
-        cpf: cpfCad.value,
-        password: passwordCad.value,
+  cadBtn.addEventListener("click", async () => {
+    const userData = {
+      username: usernameCad.value,
+      fullname: fullnameCad.value,
+      email: emailCad.value,
+      cpf: cpfCad.value,
+      password: passwordCad.value,
+    };
+  
+    try {
+      const response = await fetch("/cadastro/infos", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      });
+  
+      if (!response.ok) {
+        throw new Error("Erro ao cadastrar usuário");
       }
-    );
-    console.log(result.rows);
-    await connection.close();
-  } catch(error){
-    console.error('Erro ao inserir registro:', error)
-  }
-});
+  
+      alert("Usuário cadastrado com sucesso!");
+    } catch (error) {
+      console.error("Erro ao cadastrar usuário:", error);
+      alert("Erro ao cadastrar usuário. Verifique o console para mais detalhes.");
+    }
+  });
