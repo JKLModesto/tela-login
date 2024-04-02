@@ -4,12 +4,15 @@
   "description": "Projeto para praticar.",
   "main": "index.js",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "start": "node ./public/app.js",
+    "start:dev": "nodemon ./public/app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "nodemon": "^3.1.0",
     "typescript": "^5.4.2"
   },
   "dependencies": {
